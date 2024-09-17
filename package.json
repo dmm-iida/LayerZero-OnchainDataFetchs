@@ -1,0 +1,24 @@
+{
+  "name": "layerzero-onchaindatafetchs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "sh src/scripts/run.sh",
+    "cleanup": "sh src/scripts/cleanup_csv_files.sh",
+    "format": "prettier --write --ignore-path .prettierignore ./ "
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.22",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "csv-stringify": "^6.5.1",
+    "dotenv": "^16.4.5",
+    "ethers": "^5.7.2"
+  }
+}
