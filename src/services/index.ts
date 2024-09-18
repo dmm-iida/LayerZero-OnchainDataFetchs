@@ -1,6 +1,9 @@
 import { Contract, BigNumber, utils } from 'ethers';
-import { TransactionRecord, TransferEventArgs } from './types';
-import { exportRecipientsToCSV, exportTransactionsToCSV } from './csv';
+import { TransactionRecord, TransferEventArgs } from '../types';
+import {
+  exportRecipientsToCSV,
+  exportTransactionsToCSV,
+} from '../utilities/csv';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -22,6 +25,7 @@ export async function collectAndSaveTransactions(
   explorerUrl: string,
 ) {
   const changes: TransactionRecord[] = [];
+  const totalBalances = new Map<string, BigNumber>();
   const baseDirectory = path.resolve(__dirname, '../../data', chain);
 
   for (
@@ -43,15 +47,26 @@ export async function collectAndSaveTransactions(
       const transactionHash = explorerUrl + event.transactionHash;
       const blockNumber = event.blockNumber;
 
+      const fromNewBalance = (totalBalances.get(from) || BigNumber.from(0)).sub(
+        value,
+      );
+      totalBalances.set(from, fromNewBalance);
+      const toNewBalance = (totalBalances.get(to) || BigNumber.from(0)).add(
+        value,
+      );
+      totalBalances.set(to, toNewBalance);
+
       changes.push({
         address: from,
         change: BigNumber.from(0).sub(value),
+        totalBalance: fromNewBalance,
         transactionHash,
         blockNumber,
       });
       changes.push({
         address: to,
         change: value,
+        totalBalance: toNewBalance,
         transactionHash,
         blockNumber,
       });

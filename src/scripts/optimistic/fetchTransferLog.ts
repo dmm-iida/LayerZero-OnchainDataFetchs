@@ -1,6 +1,6 @@
 import { Contract, providers } from 'ethers';
-import { abi, tokenAddress } from '../../utils/constant';
-import { collectAndSaveTransactions } from '../../utils';
+import { abi, tokenAddress } from '../../utilities/constant';
+import { collectAndSaveTransactions } from '../../services';
 
 const chain = 'optimism-mainnet';
 const providerUrl = 'https://mainnet.optimism.io';

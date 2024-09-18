@@ -1,16 +1,17 @@
-import { TransactionRecord } from './types';
+import { TransactionRecord } from '../types';
 import * as fs from 'fs';
 import { stringify } from 'csv-stringify';
-import { ethers } from 'ethers';
+import { utils } from 'ethers';
 
 export async function exportTransactionsToCSV(
   records: TransactionRecord[],
   filePath: string,
 ) {
   const csvRecords = records.map(
-    ({ address, change, transactionHash, blockNumber }) => ({
+    ({ address, change, totalBalance, transactionHash, blockNumber }) => ({
       Address: address,
-      Change: change.toString(),
+      Change: utils.formatUnits(change, 18),
+      TotalBalance: totalBalance ? utils.formatUnits(totalBalance, 18) : '0', // format BigNumbers
       TransactionHash: transactionHash,
       BlockNumber: blockNumber,
     }),
@@ -23,6 +24,7 @@ export async function exportTransactionsToCSV(
       columns: {
         Address: 'Address',
         Change: 'Change',
+        TotalBalance: 'Total Balance',
         TransactionHash: 'Transaction Hash',
         BlockNumber: 'Block Number',
       },
@@ -49,7 +51,7 @@ export async function exportRecipientsToCSV(
 ) {
   const csvRecords = records.map(({ address, change }) => ({
     Address: address,
-    Balance: ethers.utils.formatUnits(change),
+    Balance: utils.formatUnits(change),
   }));
 
   stringify(

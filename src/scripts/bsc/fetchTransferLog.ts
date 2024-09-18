@@ -1,6 +1,6 @@
 import { Contract, providers } from 'ethers';
-import { abi, tokenAddress } from '../../utils/constant';
-import { collectAndSaveTransactions } from '../../utils';
+import { abi, tokenAddress } from '../../utilities/constant';
+import { collectAndSaveTransactions } from '../../services';
 
 const chain = 'bsc-mainnet';
 const providerUrl = `https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3`;

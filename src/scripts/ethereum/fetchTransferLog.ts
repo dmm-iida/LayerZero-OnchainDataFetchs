@@ -1,6 +1,6 @@
 import { Contract, providers } from 'ethers';
-import { abi, infuraApiKey, tokenAddress } from '../../utils/constant';
-import { collectAndSaveTransactions } from '../../utils';
+import { abi, infuraApiKey, tokenAddress } from '../../utilities/constant';
+import { collectAndSaveTransactions } from '../../services';
 
 const chain = 'mainnet';
 const providerUrl = `https://${chain}.infura.io/v3/` + infuraApiKey;
