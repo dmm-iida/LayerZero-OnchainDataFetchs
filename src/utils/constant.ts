@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 export const abi = [
   'event Transfer(address indexed from, address indexed to, uint256 value)',
 ];

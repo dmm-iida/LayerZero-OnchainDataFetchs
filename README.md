@@ -1,6 +1,6 @@
 ## LayerZero OnchainDataFetchs
 
-LayerZero OnchainDataFetchsは、LayerZeroが展開している様々なブロックチェーンからオンチェーンデータをフェッチし管理するために設計されたNode.jsスクリプトです。
+LayerZero OnchainDataFetchsは、LayerZeroが展開している様々なブロックチェーンからLayerZeroに関するオンチェーンデータをフェッチし管理するために設計されたNode.jsスクリプトです。
 
 git clone [repository URL]
 cd layerzero-onchaindatafetchs

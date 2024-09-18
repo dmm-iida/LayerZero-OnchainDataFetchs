@@ -1,11 +1,11 @@
-import { ethers } from 'ethers';
+import { BigNumber } from 'ethers';
 
 // types.ts
 export interface TransactionRecord {
   address: string;
-  change: ethers.BigNumber;
+  change: BigNumber;
   transactionHash: string;
-  blockNumber: number; // ブロック番号を追加
+  blockNumber: number;
 }
 
 export interface TransferEventArgs {
